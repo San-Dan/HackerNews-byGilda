@@ -1,4 +1,7 @@
-<?php require __DIR__ . '/header.php';
+<?php 
+require __DIR__ . '/header.php';
+
+
 
 ?>
 
@@ -6,4 +9,9 @@
 
 <?php endforeach; ?>
 
-<?php require __DIR__ . '/footer.php'; ?>
+<footer>
+        <p>Fake News ; if it's on the internet then it must be true. @ Gilda A <br> If most of the news we watch is fake, imagine how bad <i>history</i> is. <br> </p>
+</footer>
+
+</body>
+</html>
