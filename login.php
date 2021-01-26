@@ -3,7 +3,7 @@ require __DIR__ . '/header.php'; ?>
 
 <article>
 
-    <h1>Login</h1>
+    <h1>LOGIN</h1>
 
     <form action="login.php" method="post">
     <div class="formsection">
@@ -20,7 +20,7 @@ require __DIR__ . '/header.php'; ?>
 
     <p class="create-account">Or sign up <a href="/register.php">here</a></p>
     </form>
-    
+
 </article>
 
 <?php require __DIR__ . '/footer.php'; ?>
