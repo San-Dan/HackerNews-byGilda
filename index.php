@@ -22,7 +22,9 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
  
         
-
+    <?php if (isset($_SESSION['user'])) : ?>
+        <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
+    <?php endif; ?>
 
 <ol>
         <?php foreach ($posts as $post) : ?>
@@ -40,7 +42,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 <li>
 <?php if (isset($_SESSION['user'])) : ?>
-<button data-link="<?= $post['id']; ?>" class="upvote-btn
+<button data-url="<?= $post['id']; ?>" class="upvote-btn
 <?php if (isset($_SESSION['user'])) : ?>
 <?php if ($upvote !== false) : ?>
 upvote-btn-darker

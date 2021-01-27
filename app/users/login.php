@@ -7,9 +7,10 @@ require __DIR__ . '/../autoload.php';
 // Check if email and password exists in the POST request.
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password'];
 
     // Prepare, bind email parameter and execute the database query.
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
 
@@ -23,16 +24,21 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     // If we found the user in the database, compare the given password from the
     // request with the one in the database using the password_verify function.
-    if (password_verify($_POST['password'], $user['password'])) {
-        // If the password was valid we know that the user exists and provided
-        // the correct password. We can now save the user in our session.
-        // Remember to not save the password in the session!
-        unset($user['password']);
+    if (
+        isset($user['password']) &&
+        password_verify($_POST['password'], $user['password'])
+        ) {
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'biography' => $user['biography'],
+            ];
+            $_SESSION['authenticated'] = true;
+            redirect('/');
+        } else {
+            $_SESSION['error_message'] = "Invalid. Please try again.";
+            redirect('/login.php');
 
-        $_SESSION['user'] = $user;
+        }
     }
-}
-
-// We should put this redirect in the end of this file since we always want to
-// redirect the user back from this file. We don't know
-redirect('/');
