@@ -204,6 +204,36 @@ footer {
   }
 
 
+/************** NANANNA ***************/
+
+/**** LIST OF ARTICLES  ****/
+.list-item-title {
+  font-size: 18px;
+}
+
+.content-post {
+  margin-top: 2rem;
+}
+.content-post ol, ul {
+  padding: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /*****MEDIA****/
   @media screen and (min-width: 800px) {

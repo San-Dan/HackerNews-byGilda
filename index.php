@@ -1,15 +1,27 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
+<?php
+
+$statement = $database->prepare('SELECT posts.*, users.name
+FROM posts
+INNER JOIN users
+ON posts.user_id = users.id
+ORDER BY posts.id DESC');
+$statement->execute();
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 
 <article class="content-post">
-        <button class="new-btn active">New</button>
-        <button class="upvoted-btn"><a href="/upvoted.php">Most upvoted</a></button>
+    <button class="new-btn active">New</button>
+    <button class="upvoted-btn"><a href="/upvoted.php">Most upvoted</a></button>
 
 
  
         
-
 
 
 <ol>
@@ -37,18 +49,18 @@ upvote-btn-darker
         
 </button>
 <?php endif; ?>
-    <a href="<?= $post['link']; ?>" class="list-item-title">
+    <a href="<?= $post['url']; ?>" class="list-item-title">
     <?= $post['title']; ?>
     </a>
     </li>
 
 <div class="subtext">
 <p>
-<?= convertTime(strtotime($post['published'])); ?>
+<?= convertTime(strtotime($post['published'])); ?> ago.
 
 </p>
 <p>
-<?= $post['email']; ?>
+<?= $post['name']; ?>
 </p>
 
 <?php $upvotes = countUpvotes($database, $post['id']); ?>

@@ -1,6 +1,19 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
+<?php
+if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
+    $_SESSION['error_message'] = 'You have to be logged in to submit posts.';
+    redirect("/login.php");
+    exit;
+}
+
+$message = $_SESSION['message'] ?? '';
+unset($_SESSION['message']);
+
+?>
+
+
 <main>
 
 
@@ -9,7 +22,8 @@
     <section class="create-post">
         <hi>CREATE A NEW POST</hi>
 
-    <form action="/submit.php" method="post">
+        <?php if (isset($_SESSION['user'])) : ?>
+        <form action="app/posts/store.php" method="post">
     <div class="form-group">
         <label for="title">Title</label>
         <input class="form-control save" type="title" name="title" id ="title" placeholder="Enter title" required>
@@ -27,7 +41,7 @@
 
     <button type="submit" class="btn" id="log-in-btn">SUBMIT</button>
     </form>
-
+    <?php endif; ?>
     </section>
 
     

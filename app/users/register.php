@@ -10,8 +10,8 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
 
-    if (strlen(trim($_POST["password"])) < 6) {
-        $_SESSION['error_message'] = "Password must have atleast 5 characters.";
+    if (strlen(trim($_POST["password"])) < 4) {
+        $_SESSION['error_message'] = "Password must have atleast 4 characters.";
         redirect('/register.php');
     } else {
         $password = trim($_POST["password"]);
