@@ -28,7 +28,7 @@ it's still not done sadface
 <p>Open the file in your browser.</p>
 
 <h2>Code Review:</h2>
-<p>Emil Pettersson:</p>
+<p>namn</p>
  <ul>
-        <li>Bra och tydlig syntax.</li>
+        <li>Hej</li>
     </ul> 
