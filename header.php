@@ -12,7 +12,7 @@
 
 <nav>
 <section class="menu-list">
-    <a class="navbar-logo" href="/">HΛCKER.ИEWS</a>
+    <a class="navbar-logo" href="/">HΛCKER ИEWS</a>
 </nav> 
 <ul class="nav-navbar">
     <li class="nav-item
@@ -57,13 +57,7 @@
         <?php if ($_SERVER['PHP_SELF'] === '/login.php') : ?>
         active
         <?php endif; ?>">
-        <a class="nav-link" href="/login.php">Login</a>
-</li>
-<li class="nav-item
-        <?php if ($_SERVER['PHP_SELF'] === '/register.php') : ?>
-        active
-        <?php endif; ?>">
-        <a class="nav-link" href="/register.php">Create account</a>
+        <a class="nav-link" href="/login.php">Login/Create account</a>
 </li>
 <?php endif; ?>
 
