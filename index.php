@@ -6,10 +6,10 @@ require __DIR__ . '/header.php';
 
 <?php 
 
-$statement = $database->prepare('SELECT posts.*, user.email
+$statement = $database->prepare('SELECT posts.*, users.email
 FROM posts
-INNER JOIN user
-ON posts.user_id = user.id
+INNER JOIN users
+ON posts.user_id = users.id
 ORDER BY posts.id DESC');
 $statement->execute();
 
