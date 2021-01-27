@@ -22,6 +22,6 @@
 </ul>
 </footer>
 
-<script src="/"></script>
+<script src="/assets/scripts/app.js"></script>
 </body>
 </html>

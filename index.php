@@ -1,33 +1,17 @@
-<?php 
+<?php require __DIR__ . '/app/autoload.php'; ?>
+<?php require __DIR__ . '/views/header.php'; ?>
 
-require __DIR__ . '/header.php';
-
-?>
-
-<?php 
-
-$statement = $database->prepare('SELECT posts.*, users.email
-FROM posts
-INNER JOIN users
-ON posts.user_id = users.id
-ORDER BY posts.id DESC');
-$statement->execute();
-
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-?>
-
-
-<article>
-    <h1 class="title"><?php echo $config['title']; ?></h1>
-    <?php if (isset($_SESSION['user'])) : ?>
-        <p>Welcome, <?= $_SESSION['user']['name'] ?>!</p>
-    <?php endif; ?>
-</article>
 
 <article class="content-post">
         <button class="new-btn active">New</button>
         <button class="upvoted-btn"><a href="/upvoted.php">Most upvoted</a></button>
+
+
+ 
+        
+
+
+
 <ol>
         <?php foreach ($posts as $post) : ?>
         <?php if (isset($_SESSION['user'])) {
@@ -43,7 +27,6 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
 <li>
-
 <?php if (isset($_SESSION['user'])) : ?>
 <button data-link="<?= $post['id']; ?>" class="upvote-btn
 <?php if (isset($_SESSION['user'])) : ?>
@@ -52,11 +35,8 @@ upvote-btn-darker
 <?php endif; ?>
 <?php endif; ?>">
         
-
-        
 </button>
 <?php endif; ?>
-
     <a href="<?= $post['link']; ?>" class="list-item-title">
     <?= $post['title']; ?>
     </a>
@@ -84,20 +64,15 @@ upvote-btn-darker
     <?= $upvotes; ?> votes 
     </span>
     <?php endif; ?>
-
     
 </div>
-
-
-
-
 </div>
 
-
-
-
 <?php endforeach; ?>
-</ol>
+ </ol>
+
+
+
 </article>
 
-<?php require __DIR__ . '/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>

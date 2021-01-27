@@ -1,5 +1,5 @@
-<?php
-require __DIR__ . '/header.php'; ?>
+<?php require __DIR__ . '/app/autoload.php'; ?>
+<?php require __DIR__ . '/views/header.php'; ?>
 
 <article>
 
@@ -8,12 +8,12 @@ require __DIR__ . '/header.php'; ?>
     <form action="login.php" method="post">
     <div class="formsection">
     <label for="email">YOUR EMAIL</label>
-    <input type="email" name="email" id="email" placeholder="your email..." required>
+    <input type="email" name="email" id="email" placeholder="your email.." required>
     </div>
 
     <div class="formsection">
     <label for ="password">YOUR PASSWORD</label>
-    <input type="password" name="password" id="password" placeholder="your password..." required>
+    <input type="password" name="password" id="password" placeholder="your password.." required>
 
     </div>
 
@@ -28,15 +28,15 @@ require __DIR__ . '/header.php'; ?>
 <form action="/register.php" method="post">
 <div class="formsection">
     <label for="name">NAME</label>
-    <input type="name" name="name" id="name" placeholder="your name..." required>
+    <input type="name" name="name" id="name" placeholder="your name.." required>
 </div>
 <div class="formsection">
     <label for="email">EMAIL</label>
-    <input type="email" name="email" id="email" placeholder="your email..." required>
+    <input type="email" name="email" id="email" placeholder="your email.." required>
 </div>
 <div class="formsection">
     <label for="password">PASSWORD</label>
-    <input type="password" name="password" id="password" placeholder="your password..." required>
+    <input type="password" name="password" id="password" placeholder="your password.." required>
 </div>
 
 <button type="submit" class="btn" id="log-in-btn">CREATE ACCOUNT</button>
@@ -45,4 +45,4 @@ require __DIR__ . '/header.php'; ?>
 
 </article>
 
-<?php require __DIR__ . '/footer.php'; ?>
+<?php require __DIR__ . '/views/footer.php'; ?>
