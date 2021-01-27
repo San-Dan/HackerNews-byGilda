@@ -3,7 +3,31 @@
     margin: 0;
   }
 
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-color:black;
+    letter-spacing: 0.5px;
+}
 
+.container {
+  padding: 1rem;
+  margin-top: 5rem;
+  width: 70%;
+  border: 2px solid lightgrey;
+  box-shadow: 2px 2px 8px 2px lightgrey;
+  display: flex;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+/***** NAVBABY *****/
 nav {
     width: 100%;
     display: flex;
@@ -14,8 +38,10 @@ nav {
     background-color: gray;
   }
 
+  .navbar-brand {
+    margin: 20px;
+  }
 
-  
   .menu-list {
     display: none;
     padding: 0;
@@ -26,7 +52,7 @@ nav {
     background-color: gray;
     width: 50%;
     justify-content: center;
-    z-index: 100000;
+    z-index: 999;
     font-size: 18px;
   }
   
@@ -41,108 +67,32 @@ nav {
     margin-right: 20px;
     fill: white;
   }
-  .close-btn {
-    width: 20px;
-    height: 20px;
-  }
+
   .menu-list ul {
     padding: 0;
     margin-top: 2.5rem;
   }
-  
-  nav button,
-  input[type="submit"],
-  input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-  }
-  
+
   .menu-list ul li {
     margin: 35px;
     list-style: none;
   }
   
-  .navbar-brand {
-    margin: 20px;
-  }
   
-  .dropdown {
-    position: relative;
-  }
+
   
-  .dropdown-content-hidden {
-    display: none;
-  }
-  
-  .dropdown-content {
-    display: flex;
-    position: absolute;
-    background-color: gray;
-    min-height: 70px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    flex-direction: column;
-    top: 35px;
-    left: -35px;
-    padding: 10px;
-  }
-  
-  .dropdown-content a {
-    margin: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
 
 
-
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    background-color:black;
-    letter-spacing: 0.5px;
-}
-
-h1 {
-    margin-bottom: 10px;
-  }
-
-  .container {
-    padding: 1rem;
-    margin-top: 5rem;
-    min-height: 80vh;
-    width: 70%;
-    border: 2px solid lightgrey;
-    box-shadow: 3px 3px 10px 2px lightgrey;
-    display: flex;
-    
-  }
-
-
-
-
-
-/******** FORM  *******/
+/******** FORMULAR  *******/
 
 form {
-    
     margin-bottom: 2rem;
   }
   form div {
     display: flex;
     flex-direction: column;
   }
-  form button,
-  .reply-btn {
+  form button {
     color: purple;
     margin-top: 5px;
     font-weight: bold;
@@ -167,13 +117,15 @@ form {
   
 
 
-/******** FOOTER ********/
+/*********** FOOTER **********/
 footer {
     display: flex;
     flex-direction: column;
     background-color: black;
     width: 100%;
+    color: white;
     align-items: center;
+    font-size: small;
   }
   
   footer ul {
@@ -187,7 +139,7 @@ footer {
   }
   
   footer p {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   a:link {
@@ -208,9 +160,9 @@ footer {
   }
 
 
-/************** NANANNA ***************/
 
-/**** LIST OF ARTICLES  ****/
+
+/********** ARTICLES *********/
 .list-item-title {
   font-size: 18px;
 }
@@ -231,16 +183,7 @@ footer {
 
 
 
-
-
-
-
-
-
-
-
-
-  /*****MEDIA****/
+  /********* MEDIA ********/
   @media screen and (min-width: 800px) {
     body {
       display: flex;
@@ -252,10 +195,15 @@ footer {
       padding-top: 2rem;
       margin-top: 5rem;
       background-color: black;
-      min-height: 90vh;
-      margin-left: 10rem;
+      margin-left: 5rem;
       display: flex;
     }
+
+    article {
+        padding-left: 5rem;
+
+    }
+
     input,
     textarea {
       width: 100%;
@@ -317,7 +265,4 @@ footer {
       font-size: 1.1rem;
     }
   
-    .dropdown-content {
-      background-color:gray;
-    }
   }
