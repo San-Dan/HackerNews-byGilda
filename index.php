@@ -2,7 +2,6 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
 <?php
-
 $statement = $database->prepare('SELECT posts.*, users.name
 FROM posts
 INNER JOIN users
@@ -11,22 +10,18 @@ ORDER BY posts.id DESC');
 $statement->execute();
 
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 
 <article class="content-post">
-    <button class="new-btn active">New</button>
-    <button class="upvoted-btn"><a href="/upvoted.php">Most upvoted</a></button>
-
-
+<button class="new-btn active">New</button>
+<button class="upvoted-btn"><a href="/upvoted.php">Most upvoted</a></button>
  
-        
     <?php if (isset($_SESSION['user'])) : ?>
         <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
     <?php endif; ?>
 
-<ol>
+    <ol>
         <?php foreach ($posts as $post) : ?>
         <?php if (isset($_SESSION['user'])) {
             $post_id = $post['id'];
@@ -40,17 +35,10 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
         }
         ?>
 
+
+
 <li>
-<?php if (isset($_SESSION['user'])) : ?>
-<button data-url="<?= $post['id']; ?>" class="upvote-btn
-<?php if (isset($_SESSION['user'])) : ?>
-<?php if ($upvote !== false) : ?>
-upvote-btn-darker
-<?php endif; ?>
-<?php endif; ?>">
-        
-</button>
-<?php endif; ?>
+
     <a href="<?= $post['url']; ?>" class="list-item-title">
     <?= $post['title']; ?>
     </a>
@@ -68,7 +56,20 @@ upvote-btn-darker
 <?php $upvotes = countUpvotes($database, $post['id']); ?>
 <?php $numberOfComments = countComments($database, $post['id']); ?>
 
+
 <div>
+<?php if (isset($_SESSION['user'])) : ?>
+    
+    <button data-url="<?= $post['id']; ?>" class="fa fa-thumbs-up
+    <?php if (isset($_SESSION['user'])) : ?>
+    <?php if ($upvote !== false) : ?>
+    
+    <?php endif; ?>
+    <?php endif; ?>">
+            
+    </button>
+    <?php endif; ?>
+
     <?php if ($upvotes == 1) : ?>
     <span class="number-of-votes" data-url="<?= $post['id']; ?>">
     <?= $upvotes; ?> vote

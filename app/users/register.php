@@ -12,7 +12,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
 
     if (strlen(trim($_POST["password"])) < 4) {
         $_SESSION['error_message'] = "Password must have atleast 4 characters.";
-        redirect('/register.php');
+        redirect('/login.php');
     } else {
         $password = trim($_POST["password"]);
     }
@@ -26,7 +26,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
     $statement->execute();
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
-    $_SESSION['message'] = 'Yippie! Your account has been created, please log in below.';
+    $_SESSION['message'] = 'Your account has been created, please log in.';
     redirect('/login.php');
 }
 
