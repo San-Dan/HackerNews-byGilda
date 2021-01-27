@@ -5,7 +5,7 @@
 
     <h1>Login</h1>
 
-    <form action="login.php" method="post">
+    <form action="app/users/login.php" method="post">
     <div class="formsection">
     <label for="email">YOUR EMAIL</label>
     <input type="email" name="email" id="email" placeholder="your email.." required>
@@ -25,7 +25,7 @@
 
 
     <h1>Create new account</h1>
-<form action="/register.php" method="post">
+<form action="app/users/register.php" method="post">
 <div class="formsection">
     <label for="name">NAME</label>
     <input type="name" name="name" id="name" placeholder="your name.." required>

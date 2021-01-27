@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-// Check if both email and password exists in the POST request.
+// Check if email and password exists in the POST request.
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
@@ -17,7 +17,6 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     // If we couldn't find the user in the database, redirect back to the login
-    // page with our custom redirect function.
     if (!$user) {
         redirect('/login.php');
     }
