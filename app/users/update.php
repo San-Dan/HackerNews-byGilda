@@ -31,7 +31,7 @@ if (isset($_POST['email'])) {
         ];
         $_SESSION['message'] = 'Your email has been updated!';
     } else {
-        $_SESSION['error_message'] = 'Hoppsan, something went wrong. Try again.';
+        $_SESSION['error_message'] = 'Something went wrong. Try again.';
     };
 
     redirect('/profile.php');

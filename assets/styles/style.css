@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     color: white;
-    background-color:black;
+    background-color:#0e0e0e;
     letter-spacing: 0.5px;
 }
 
@@ -213,7 +213,7 @@ footer {
       font-size: small;
     }
 
-    .number-of-votes {
+    .upvotes-comments {
       font-size: small;
     }
   
@@ -251,14 +251,21 @@ footer {
   
 
 
+.post-info {
+  padding:1rem;
+}
 
+.create-post {
+  width: 300px;
+}
 
-
-
+.update-profile {
+  width: 400px;
+}
   
     .profile-img {
-      width: 200px;
-      height: 200px;
+      width: 100px;
+      height: 100px;
     }
   
     .list-item-title {

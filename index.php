@@ -58,12 +58,13 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 <div>
+<div class="upvotes-comments">
 <?php if (isset($_SESSION['user'])) : ?>
     
     <button data-url="<?= $post['id']; ?>" class="fa fa-thumbs-up
     <?php if (isset($_SESSION['user'])) : ?>
     <?php if ($upvote !== false) : ?>
-    
+        upvote-btn-darker
     <?php endif; ?>
     <?php endif; ?>">
             
@@ -71,15 +72,25 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <?php if ($upvotes == 1) : ?>
-    <span class="number-of-votes" data-url="<?= $post['id']; ?>">
+        <span class="number-of-votes" data-url="<?= $post['id']; ?>">
     <?= $upvotes; ?> vote
-    </span>
+        </span>
     <?php else : ?>
-    <span class="number-of-votes" data-url="<?= $post['id']; ?>">
+        <span class="number-of-votes" data-url="<?= $post['id']; ?>">
     <?= $upvotes; ?> votes 
-    </span>
+        </span>
     <?php endif; ?>
     
+    <?php if ($numberOfComments == 1) : ?>
+            <a href="/post.php?id=<?= $post['id']; ?>">
+                <?= $numberOfComments; ?> comment
+            </a>
+    <?php else : ?>
+            <a href="/post.php?id=<?= $post['id']; ?>">
+                    <?= $numberOfComments; ?> comments
+            </a>
+    <?php endif; ?>
+    </div>
 </div>
 </div>
 

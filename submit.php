@@ -36,9 +36,9 @@ unset($_SESSION['message']);
 
     <div class="form-group">
         <label for="description">Comment <small class="text-muted"><i> - - Optional</i></small></label> 
-        <textarea class="form-control" type="text" name="description" id ="description" placeholder="Enter description"></textarea>
+        <textarea class="form-control" rows="10" cols="5" type="text" name="description" id ="description" placeholder="Enter description"></textarea>
     </div>
-
+    
     <button type="submit" class="btn" id="log-in-btn">SUBMIT</button>
     </form>
     <?php endif; ?>
