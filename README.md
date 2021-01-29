@@ -47,7 +47,3 @@ it's still not done sadface
 >PS. I love your Psyduck avatar placeholder!  
 
 
-<p>namn</p>
- <ul>
-        <li>Hej</li>
-    </ul> 
