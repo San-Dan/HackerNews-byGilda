@@ -15,7 +15,6 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
 
 
 
-
 <article class="user-profile">
 
 

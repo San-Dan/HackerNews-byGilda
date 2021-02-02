@@ -27,7 +27,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
 <ol>
-        <?php foreach ($posts as $post) : ?>
+    <?php foreach ($posts as $post) : ?>
         <?php if (isset($_SESSION['user'])) {
             $post_id = $post['id'];
             $user_id = $_SESSION['user']['id'];
@@ -38,7 +38,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
             $statement->execute();
             $upvote = $statement->fetch();
         }
-        ?>
+    ?>
 
 <li>
 <?php if (isset($_SESSION['user'])) : ?>
@@ -61,9 +61,7 @@ upvote-btn-darker
 <?= convertTime(strtotime($post['published'])); ?> ago.
 
 </p>
-<p>
-<?= $post['name']; ?>
-</p>
+<p> <?= $post['name']; ?> </p>
 
 <?php $upvotes = countUpvotes($database, $post['id']); ?>
 <?php $numberOfComments = countComments($database, $post['id']); ?>
@@ -82,7 +80,7 @@ upvote-btn-darker
 </div>
 </div>
 
-<?php endforeach; ?>
+    <?php endforeach; ?>
  </ol>
 
 

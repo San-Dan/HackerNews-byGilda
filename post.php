@@ -21,9 +21,6 @@ $post = $statement->fetch();
 
 
 
-
-
-
 $statement = $database->prepare('SELECT comments.*, users.email
 FROM comments
 INNER JOIN users
