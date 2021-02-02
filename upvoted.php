@@ -17,14 +17,13 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <article class="content-post">
+<?php if (isset($_SESSION['user'])) : ?>
+        <h2>Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
+    <?php endif; ?>
+
 <button class="new-btn"><a href="/">New</a></button>
         <button class="upvoted-btn active">Most upvoted</button>
 
-
-        
-        <?php if (isset($_SESSION['user'])) : ?>
-        <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
-    <?php endif; ?>
 
 <ol>
     <?php foreach ($posts as $post) : ?>
