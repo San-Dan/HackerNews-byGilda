@@ -1,5 +1,6 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
+
 <?php
 if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
     redirect("/login.php");
@@ -18,26 +19,21 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
 <article class="user-profile">
 
 
-
-
     <div class="user-info">
         <?php if (is_file($fileName) && file_exists($fileName)) : ?>
             <img src="<?= $fileName ?>" class="profile-img" alt="profile image of <?= $_SESSION['user']['email'] ?>" />
         <?php else : ?>
             <img src="/app/users/images/picture.png" class="profile-img" />
         <?php endif; ?>
-        <div class=" user-info-text">
-            <h1>
+        <div class="user-info-text">
+            <h1>Username: 
                 <?= $_SESSION['user']['name']; ?>
             </h1>
-            <p>
+            <p>Biography: 
                 <?= $_SESSION['user']['biography']; ?>
             </p>
         </div>
     </div>
-
-
-
 
 
 
