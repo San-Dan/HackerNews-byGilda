@@ -44,17 +44,8 @@ $time = $post['published'];
 
 ?>
         
-<!-- POST  -->
+<!---- POST  ---->
 <article class="single-post">
-
-    <div class="poster">
-        <?php if (is_file($fileName) && file_exists($fileName)) : ?>
-            <img src="<?= $fileName ?>" class="profile-img" alt="profile image of <?= $post['email'] ?>" />
-        <?php else : ?>
-            <img src="/app/users/images/picture.png" class="profile-img" alt="default picture image" />
-        <?php endif; ?>
-
-
         
         <div class="post-info">
             <div>
@@ -76,10 +67,10 @@ $time = $post['published'];
             <p>
                 <?= $post['description']; ?>
             </p>
-        </div>
+        
     </div>
 
-
+<!---- UPVOTES AND COMMENTS  ---->
     <div class="subtext">
         <?php $upvotes = countUpvotes($database, $post['id']); ?>
         <?php $numberOfComments = countComments($database, $post['id']); ?>
@@ -117,28 +108,32 @@ $time = $post['published'];
     </div>
 
 
-    <!-- FORM TO POST COMMENT  -->
-
+    <!----- FORM TO POST COMMENT  ----->
     <form action="app/comments/store.php?id=<?= $post['id']; ?>" method="post">
         <div class="form-group">
             <label for="comment">Comment</label>
             <textarea class="form-control" rows="5" cols="5" type="text" name="comment" id="comment"></textarea>
-        </div><!-- /form-group -->
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </article>
+
 <article class="comments">
     <?php foreach ($comments as $comment) : ?>
         <?php if (isset($_SESSION['user'])) {
-            $statement = $database->prepare('SELECT * FROM comments_upvotes WHERE comment_id = :comment_id AND user_id = :user_id');
-            $statement->bindParam(':comment_id', $comment['id'], PDO::PARAM_INT);
+            $statement = $database->prepare('SELECT * FROM comments WHERE id = :id AND user_id = :user_id');
+            $statement->bindParam(':id', $comment['id'], PDO::PARAM_INT);
             $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
             $statement->execute();
             $commentUpvote = $statement->fetch();
         }
         ?>
 
-        <!-- ALL COMMENTS IN A LOOP  -->
+        
+
+
+        <!-------- ALL COMMENTS -------->
         <div class="comment" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
             <div class="post-info">
                 <div>
@@ -162,21 +157,13 @@ $time = $post['published'];
             </div>
 
 
-
-
-
-
-
-
-
-
             <?php if (isset($_SESSION['user'])) : ?>
                 <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
                     <div class="edit-comment-container">
                         <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="fa fa-pencil">
                         </button>
                         <a href="/app/comments/delete-comment.php?comment-id=<?= $comment['id']; ?>&id=<?= $comment['post_id']; ?>" class="delete-comment">
-                            x
+                            X
                         </a>
                     </div>
                 <?php endif; ?>
@@ -185,21 +172,10 @@ $time = $post['published'];
             <p class="comment-content" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
                 <?= $comment['content']; ?>
             </p>
-            <div class="subtext">
+
                 
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- EDIT COMMENT FORM  -->
+<!----- EDIT COMMENT FORM  ----->
 <form action="/app/comments/update-comment.php?id=<?= $comment['post_id']; ?>&comment-id=<?= $comment['id']; ?>" class="comment-form-hidden" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" method="post">
     <div class="form-group">
         <label for="edit">Edit Comment</label>
@@ -211,9 +187,7 @@ $time = $post['published'];
 
 
 
-                            
-                            
-                    
+                                         
     <?php endforeach; ?>
 </article>
 
