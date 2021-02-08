@@ -14,7 +14,6 @@ INNER JOIN users
 ON posts.user_id = users.id
 WHERE posts.id = :post_id LIMIT 1');
 
-
 $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
 $statement->execute();
 $post = $statement->fetch();
@@ -34,17 +33,12 @@ $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-
-$statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-$statement->execute();
-$replies = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
 $time = $post['published'];
 
 ?>
+
         
-<!---- POST  ---->
+<!---- POST ---->
 <article class="single-post">
         
         <div class="post-info">
@@ -119,7 +113,14 @@ $time = $post['published'];
     </form>
 </article>
 
+
+
+
+
+
 <article class="comments">
+<p>All Comments:</p>
+
     <?php foreach ($comments as $comment) : ?>
         <?php if (isset($_SESSION['user'])) {
             $statement = $database->prepare('SELECT * FROM comments WHERE id = :id AND user_id = :user_id');
@@ -130,18 +131,15 @@ $time = $post['published'];
         }
         ?>
 
-        
-
-
         <!-------- ALL COMMENTS -------->
         <div class="comment" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
             <div class="post-info">
                 <div>
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <button data-url="<?= $comment['id']; ?>" class="upvote-comment-btn
+                        <button data-url="<?= $comment['id']; ?>" class="fa fa-thumbs-up
                             <?php if (isset($_SESSION['user'])) : ?>
                                 <?php if ($commentUpvote !== false) : ?>
-                                         upvote-comment-btn-darker
+                                         upvote-btn-darker
                                 <?php endif; ?>
                             <?php endif; ?>">
                             
@@ -150,7 +148,7 @@ $time = $post['published'];
                     <?php endif; ?>
 
                     <p class="comment-user">
-                        <?= $comment['email'] . ' ' . convertTime(strtotime($comment['created_at'])); ?>
+                        <?= $comment['email'] . ' ' . convertTime(strtotime($comment['published'])); ?>
                         ago
                     </p>
                 </div>
@@ -192,11 +190,6 @@ $time = $post['published'];
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>
-
-
-
-
-
 
 
 
