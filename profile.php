@@ -35,7 +35,7 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
     </div>
 
 
-
+<!------- UPDATE PROFILE ------->
     <section class="update-profile">
         <form action="app/users/update.php" method="post" enctype="multipart/form-data">
             <div class="formsection">
@@ -49,7 +49,7 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
         <form action="app/users/update.php" method="post">
             <div class="formsection">
                 <label for="biography">Update your bio</label>
-                <textarea class="form-control" rows="5" cols="5" type="text" name="bio" id="bio" placeholder="write anything about yourself"><?= $_SESSION['user']['biography']; ?></textarea>
+                <textarea class="form-control" rows="5" cols="5" type="text" name="biography" id="biography" placeholder="write anything about yourself"><?= $_SESSION['user']['biography']; ?></textarea>
                 
             </div>
             <button type="submit" class="btn btn-primary">Save</button>

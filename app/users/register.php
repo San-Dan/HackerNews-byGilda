@@ -9,6 +9,7 @@ require __DIR__ . '/../autoload.php';
 if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $image = 'picture.png'; 
 
     if (strlen(trim($_POST["password"])) < 4) {
         $_SESSION['error_message'] = "Password must have atleast 4 characters.";
@@ -19,10 +20,11 @@ if (isset($_POST['email'], $_POST['password'], $_POST['name'])) {
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $statement = $database->prepare('INSERT INTO users (name, email, password) VALUES (:name, :email, :password)');
+    $statement = $database->prepare('INSERT INTO users (name, email, password, image) VALUES (:name, :email, :password, :image)');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
     $statement->bindParam(':name', $name, PDO::PARAM_STR);
+    $statement->bindParam(':image', $image, PDO::PARAM_STR);
     $statement->execute();
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);

@@ -38,9 +38,13 @@ if (isset($_POST['email'])) {
 }
 
 
+
+
 if (isset($_POST['biography'])) {
-    $bio = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
+    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
     $id = $_SESSION['user']['id'];
+
+    /*die(var_dump($bio));*/
 
     $statement = $database->prepare('UPDATE users SET biography = :biography WHERE id = :id');
     $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
@@ -70,6 +74,9 @@ if (isset($_POST['biography'])) {
 
     redirect('/profile.php');
 }
+
+
+
 
 if (isset($_POST['new_password'])) {
     $id = $_SESSION['user']['id'];
