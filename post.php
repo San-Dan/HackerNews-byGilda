@@ -114,10 +114,6 @@ $time = $post['published'];
 </article>
 
 
-
-
-
-
 <article class="comments">
 <p>All Comments:</p>
 
@@ -132,6 +128,7 @@ $time = $post['published'];
         ?>
 
         <!-------- ALL COMMENTS -------->
+        <p>Hej testar</p>
         <div class="comment" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
             <div class="post-info">
                 <div>
