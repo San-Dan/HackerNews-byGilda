@@ -102,7 +102,7 @@ $time = $post['published'];
     </div>
 
 
-    <!----- FORM TO POST COMMENT  ----->
+    <!-------- FORM TO POST COMMENT -------->
     <form action="app/comments/store.php?id=<?= $post['id']; ?>" method="post">
         <div class="form-group">
             <label for="comment">Comment</label>
@@ -112,6 +112,7 @@ $time = $post['published'];
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </article>
+
 
 
 <article class="comments">
@@ -126,24 +127,10 @@ $time = $post['published'];
             $commentUpvote = $statement->fetch();
         }
         ?>
-
-        <!-------- ALL COMMENTS -------->
-        <p>Hej testar</p>
+        <!----------- ALL COMMENTS ---------->
         <div class="comment" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
             <div class="post-info">
                 <div>
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        <button data-url="<?= $comment['id']; ?>" class="fa fa-thumbs-up
-                            <?php if (isset($_SESSION['user'])) : ?>
-                                <?php if ($commentUpvote !== false) : ?>
-                                         upvote-btn-darker
-                                <?php endif; ?>
-                            <?php endif; ?>">
-                            
-                        </button>
-
-                    <?php endif; ?>
-
                     <p class="comment-user">
                         <?= $comment['email'] . ' ' . convertTime(strtotime($comment['published'])); ?>
                         ago
@@ -152,11 +139,13 @@ $time = $post['published'];
             </div>
 
 
-            <?php if (isset($_SESSION['user'])) : ?>
-                <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
-                    <div class="edit-comment-container">
-                        <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="fa fa-pencil">
-                        </button>
+
+        <!---- EDIT COMMENT ---->
+    <?php if (isset($_SESSION['user'])) : ?>
+        <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
+                <div class="edit-comment-container">
+                    <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="fa fa-pencil">
+                    </button>
                         <a href="/app/comments/delete-comment.php?comment-id=<?= $comment['id']; ?>&id=<?= $comment['post_id']; ?>" class="delete-comment">
                             X
                         </a>
@@ -167,14 +156,12 @@ $time = $post['published'];
             <p class="comment-content" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
                 <?= $comment['content']; ?>
             </p>
-
-                
-
-<!----- EDIT COMMENT FORM  ----->
+        
+    <!----- EDIT COMMENT FORM  ----->
 <form action="/app/comments/update-comment.php?id=<?= $comment['post_id']; ?>&comment-id=<?= $comment['id']; ?>" class="comment-form-hidden" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" method="post">
     <div class="form-group">
         <label for="edit">Edit Comment</label>
-        <textarea class="form-control" rows="10" cols="5" type="text" name="edit" id="edit"><?= $comment['content']; ?></textarea>
+        <textarea class="form-control" rows="5" cols="5" type="text" name="edit" id="edit"><?= $comment['content']; ?></textarea>
     </div>
         <button type="submit" class="edit-comment-save">Save</button>
         <a href="/post.php?id=<?= $post_id ?>" class="edit-comment-cancel">Cancel</a>

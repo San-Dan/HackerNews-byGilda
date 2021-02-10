@@ -6,8 +6,8 @@ require __DIR__ . '/../autoload.php';
 
 // In this file we delete new posts in the database.
 
-if (!isset($_SESSION['user']) || $_SESSION['authenticated'] !== true) {
-    redirect('/login.php');
+if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
+    redirect("/login.php");
     exit;
 }
 else {
@@ -20,6 +20,6 @@ else {
     $statement->execute();
 
     $_SESSION['message'] = 'You have deleted the post.';
-    redirect('/');
+    redirect('/submitted.php');
 }
 

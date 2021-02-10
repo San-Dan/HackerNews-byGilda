@@ -41,20 +41,18 @@ $error_message = "You have not submitted any posts yet.";
 <ul>
     <?php foreach ($posts as $post) : ?>
     <?php $_SESSION['post'] = $post; ?>
-    <li class="submitted-post">
+<li class="submitted-post">
     <a href="<?= $post['url']; ?>">
         <?= $post['title']; ?>
         </a>
     <p><?= $post['description']; ?></p>
-    </li>
-<div class="subtext">
-        <?= convertTime(strtotime($post['published'])); ?> ago
-        <a href="/edit-post.php?id=<?= $post['id']; ?>" id="edit-post">
-        Edit </a>
-        <a href="/posts/delete.php?id=<?= $post['id']; ?>" id="delete-post">
-        Delete </a>
-</div>
-<?php endforeach ?>
+</li>
+        <div class="subtext">
+            <?= convertTime(strtotime($post['published'])); ?> ago
+            <a href="/edit-post.php?id=<?= $post['id']; ?>" id="edit-post">Edit</a>
+            <a href="/posts/delete.php?id=<?= $post['id']; ?>" id="delete-post">Delete</a>
+        </div>
+    <?php endforeach ?>
 </ul>
 </article>
 

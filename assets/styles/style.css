@@ -184,8 +184,20 @@ footer {
   position: relative;
 }
 
+.edit-comment-container {
+  display: flex;
+}
 
+/*.comment-form-hidden {
+  display: none;
+  position: relative;
+  margin-bottom: 30px;
+}*/
 
+.delete-comment {
+  font-weight: bold;
+  font-size: 18px;
+}
 
 
 
