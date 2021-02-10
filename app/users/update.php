@@ -5,6 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 
+/******** EMAIL *********/
 if (isset($_POST['email'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $id = $_SESSION['user']['id'];
@@ -39,7 +40,7 @@ if (isset($_POST['email'])) {
 
 
 
-
+/******* BIOGRAPHY ********/
 if (isset($_POST['biography'])) {
     $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
     $id = $_SESSION['user']['id'];
@@ -76,8 +77,7 @@ if (isset($_POST['biography'])) {
 }
 
 
-
-
+/********* PASSWORD *********/
 if (isset($_POST['new_password'])) {
     $id = $_SESSION['user']['id'];
 
@@ -112,6 +112,7 @@ if (isset($_POST['new_password'])) {
     }
 }
 
+/******** IMAGE *******/
 if (isset($_FILES['image'])) {
     $file = $_FILES['image'];
 

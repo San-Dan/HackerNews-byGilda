@@ -18,7 +18,6 @@ if (isset($_SESSION['user'])) {
         $id = $_SESSION['user']['id'];
 
 
-
         $statement = $database->prepare('INSERT INTO posts (title, url, description, published, user_id) VALUES (:title, :url, :description, :published, :user_id)');
         $statement->bindParam(':title', $title, PDO::PARAM_STR);
         $statement->bindParam(':url', $url, PDO::PARAM_STR);

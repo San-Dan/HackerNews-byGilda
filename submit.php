@@ -16,8 +16,14 @@ unset($_SESSION['message']);
 
 <main>
 
-
-
+    <!-- ALERT -->
+    <div>
+        <?php if ($message !== '') : ?>
+            <div class="alert alert success">
+                <?= $message; ?>
+            </div>
+        <?php endif; ?>
+    </div>
 
     <section class="create-post">
         <hi>CREATE A NEW POST</hi>
@@ -30,8 +36,8 @@ unset($_SESSION['message']);
     </div>
 
     <div class="form-group">
-        <label for="link">URL</label>
-        <input class="form-control" type="link" name="link" id ="link" placeholder="Enter URL" required>
+        <label for="url">URL</label>
+        <input class="form-control" type="url" name="url" id ="url" placeholder="Enter URL" required>
     </div>
 
     <div class="form-group">
@@ -39,14 +45,12 @@ unset($_SESSION['message']);
         <textarea class="form-control" rows="10" cols="5" type="text" name="description" id ="description" placeholder="Enter description"></textarea>
     </div>
     
-    <button type="submit" class="btn" id="log-in-btn">SUBMIT</button>
+    <button type="submit" class="btn">SUBMIT</button>
     </form>
     <?php endif; ?>
     </section>
 
     
-
-
 </main>
 
 

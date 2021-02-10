@@ -10,13 +10,28 @@ if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
 $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
 
+$error_message = $_SESSION['error_message'] ?? '';
+unset($_SESSION['error_message']);
+
 $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
 ?>
 
 
 
 <article class="user-profile">
-
+    <!-- ALERT -->
+    <div>
+        <?php if ($message !== '') : ?>
+            <div class="alert alert success">
+                <?= $message; ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($error_message !== '') : ?>
+            <div class="alert alert-danger">
+                <?= $error_message; ?>
+            </div>
+        <?php endif; ?>
+    </div>
 
     <div class="user-info">
         <?php if (is_file($fileName) && file_exists($fileName)) : ?>
@@ -24,6 +39,7 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
         <?php else : ?>
             <img src="/app/users/images/picture.png" class="profile-img" />
         <?php endif; ?>
+
         <div class="user-info-text">
             <h1>Username: 
                 <?= $_SESSION['user']['name']; ?>
@@ -34,8 +50,10 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
         </div>
     </div>
 
+<hr>
 
 <!------- UPDATE PROFILE ------->
+
     <section class="update-profile">
         <form action="app/users/update.php" method="post" enctype="multipart/form-data">
             <div class="formsection">
