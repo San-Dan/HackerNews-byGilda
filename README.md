@@ -1,7 +1,7 @@
 # hacker-news
 Assignment to create a Hacker News clone.
 
-it's still not done sadface
+I still have to fix update profile pic, and I'M WORKING ON THE CSS
 
 <h2>Built with:</h2>
  <ul>
