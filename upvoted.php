@@ -40,52 +40,67 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
 <li>
-<?php if (isset($_SESSION['user'])) : ?>
-<button data-url="<?= $post['id']; ?>" class="upvote-btn
-<?php if (isset($_SESSION['user'])) : ?>
-<?php if ($upvote !== false) : ?>
-upvote-btn-darker
-<?php endif; ?>
-<?php endif; ?>">
-        
-</button>
-<?php endif; ?>
-    <a href="<?= $post['url']; ?>" class="list-item-title">
-    <?= $post['title']; ?>
-    </a>
-    </li>
+
+<a target="_blank" href="<?= $post['url']; ?>" class="list-item-title">
+<?= $post['title']; ?>
+</a>
+</li>
 
 <div class="subtext">
 <p>
 <?= convertTime(strtotime($post['published'])); ?> ago.
 
 </p>
-<p> <?= $post['name']; ?> </p>
+<p>
+<?= $post['name']; ?>
+</p>
 
 <?php $upvotes = countUpvotes($database, $post['id']); ?>
 <?php $numberOfComments = countComments($database, $post['id']); ?>
 
+
 <div>
-    <?php if ($upvotes == 1) : ?>
-    <span class="number-of-votes" data-url="<?= $post['id']; ?>">
-    <?= $upvotes; ?> vote
-    </span>
-    <?php else : ?>
-    <span class="number-of-votes" data-url="<?= $post['id']; ?>">
-    <?= $upvotes; ?> votes 
-    </span>
-    <?php endif; ?>
-    
+<div class="upvotes-comments">
+<?php if (isset($_SESSION['user'])) : ?>
+
+<button data-url="<?= $post['id']; ?>" class="upvote-btn
+<?php if (isset($_SESSION['user'])) : ?>
+<?php if ($upvote !== false) : ?>
+upvote-btn-darker
+<?php endif; ?>
+<?php endif; ?>">
+<i class="fa fa-heart" aria-hidden="true"></i>
+</button>
+<?php endif; ?>
+
+<?php if ($upvotes == 1) : ?>
+<span class="number-of-votes" data-url="<?= $post['id']; ?>">
+<?= $upvotes; ?> vote
+</span>
+<?php else : ?>
+<span class="number-of-votes" data-url="<?= $post['id']; ?>">
+<?= $upvotes; ?> votes 
+</span>
+<?php endif; ?>
+
+<?php if ($numberOfComments == 1) : ?>
+    <a href="/post.php?id=<?= $post['id']; ?>">
+        <?= $numberOfComments; ?> comment
+    </a>
+<?php else : ?>
+    <a href="/post.php?id=<?= $post['id']; ?>">
+            <?= $numberOfComments; ?> comments
+    </a>
+<?php endif; ?>
+</div>
 </div>
 </div>
 
-    <?php endforeach; ?>
- </ol>
+<?php endforeach; ?>
+</ol>
 
 
 
 </article>
-        
-
 
 <?php require __DIR__ . '/views/footer.php'; ?>
