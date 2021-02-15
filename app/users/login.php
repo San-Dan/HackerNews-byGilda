@@ -33,6 +33,7 @@ if (isset($_POST['email'], $_POST['password'])) {
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'biography' => $user['biography'],
+                'image' => $user['image'],
             ];
             $_SESSION['authenticated'] = true;
             redirect('/');

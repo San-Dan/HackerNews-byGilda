@@ -10,9 +10,35 @@ ORDER BY posts.id DESC');
 $statement->execute();
 
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+$message = $_SESSION['message'] ?? '';
+unset($_SESSION['message']);
+
+$error_message = $_SESSION['error_message'] ?? '';
+unset($_SESSION['error_message']);
+
+
 ?>
 
+
+
 <article class="content-post">
+    <!-- ALERT -->
+    <div>
+        <?php if ($message !== '') : ?>
+            <div class="alert alert success">
+                <?= $message; ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($error_message !== '') : ?>
+            <div class="alert alert-danger">
+                <?= $error_message; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
+
     <?php if (isset($_SESSION['user'])) : ?>
         <h2>Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
     <?php endif; ?>

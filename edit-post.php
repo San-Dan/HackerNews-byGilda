@@ -4,7 +4,6 @@
 <?php
 if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
     redirect("/login.php");
-    exit;
 }
 
 $post_id = $_GET['id'];

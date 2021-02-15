@@ -1,7 +1,24 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
+<?php
+$message = $_SESSION['message'] ?? '';
+unset($_SESSION['message']);
+
+$error_message = $_SESSION['error_message'] ?? '';
+unset($_SESSION['error_message']);
+?>
+
 <article>
+    <!-- ALERT -->
+    <div>
+        <?php if ($message !== '') : ?>
+            <div class="alert alert success">
+                <?= $message; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+
 
     <h1>Login</h1>
 

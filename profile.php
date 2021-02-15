@@ -4,7 +4,6 @@
 <?php
 if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
     redirect("/login.php");
-    exit;
 }
 
 $message = $_SESSION['message'] ?? '';
@@ -13,8 +12,10 @@ unset($_SESSION['message']);
 $error_message = $_SESSION['error_message'] ?? '';
 unset($_SESSION['error_message']);
 
-$fileName = 'app/users/images' . $_SESSION['user']['id'] . '.png';
+
 ?>
+
+
 
 
 
@@ -33,12 +34,11 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.png';
         <?php endif; ?>
     </div>
 
-    <div class="user-info">
-        <?php if (is_file($fileName) && file_exists($fileName)) : ?>
-            <img src="<?= $fileName ?>" class="profile-img" alt="profile image of <?= $_SESSION['user']['id'] ?>" />
-        <?php else : ?>
-            <img src="/app/users/images/picture.png" class="profile-img" />
-        <?php endif; ?>
+    <div class="user-info"> 
+           <?php $filePath = '/app/users/images/'; ?>
+
+           <img src="<?= $filePath . $_SESSION['user']['image']; ?>">
+           
 
         <div class="user-info-text">
             <h1>Username: 

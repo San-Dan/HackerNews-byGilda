@@ -5,7 +5,6 @@
 if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
     $_SESSION['error_message'] = 'You have to be logged in to submit posts.';
     redirect("/login.php");
-    exit;
 }
 
 $message = $_SESSION['message'] ?? '';
