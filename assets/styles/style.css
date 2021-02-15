@@ -78,9 +78,13 @@ nav {
     list-style: none;
   }
   
-  
+/*  
+.upvote-btn {
+}*/
 
-  
+.upvote-btn-darker {
+  color: rgb(189, 44, 44);
+} 
 
 
 /******** FORMULAR  *******/
@@ -116,52 +120,6 @@ form {
   }
   
 
-
-/*********** FOOTER **********/
-footer {
-    display: flex;
-    flex-direction: column;
-    background-color: #0e0e0e;
-    width: 100%;
-    color: white;
-    align-items: center;
-    font-size: small;
-  }
-  
-  footer ul {
-    display: flex;
-    padding: 10px;
-  }
-  
-  footer ul li {
-    list-style: none;
-    margin: 10px;
-  }
-  
-  footer p {
-    margin-bottom: 20px;
-  }
-
-  a:link {
-    text-decoration: none;
-    color: white;
-    z-index: 9999;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  a.navbar-brand {
-      color: white;
-  }
-  a.nav-link {
-      color: white;
-  }
-
-
-
-
 /********** ARTICLES *********/
 .list-item-title {
   font-size: 18px;
@@ -188,11 +146,11 @@ footer {
   display: flex;
 }
 
-/*.comment-form-hidden {
+.comment-form-hidden {
   display: none;
   position: relative;
   margin-bottom: 30px;
-}*/
+}
 
 .delete-comment {
   font-weight: bold;
@@ -200,7 +158,47 @@ footer {
 }
 
 
+/*********** FOOTER **********/
+footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #0e0e0e;
+  width: 100%;
+  color: white;
+  align-items: center;
+  font-size: small;
+}
 
+footer ul {
+  display: flex;
+  padding: 10px;
+}
+
+footer ul li {
+  list-style: none;
+  margin: 10px;
+}
+
+footer p {
+  margin-bottom: 20px;
+}
+
+a:link {
+  text-decoration: none;
+  color: white;
+  z-index: 9999;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.navbar-brand {
+    color: white;
+}
+a.nav-link {
+    color: white;
+}
 
 
   /********* MEDIA ********/
@@ -272,7 +270,8 @@ footer {
 
 
 .post-info {
-  padding:1rem;
+  padding-top: 1rem;
+  
 }
 
 .create-post {

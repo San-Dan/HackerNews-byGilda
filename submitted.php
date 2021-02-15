@@ -50,7 +50,7 @@ $error_message = "You have not submitted any posts yet.";
         <div class="subtext">
             <?= convertTime(strtotime($post['published'])); ?> ago
             <a href="/edit-post.php?id=<?= $post['id']; ?>" id="edit-post">Edit</a>
-            <a href="/posts/delete.php?id=<?= $post['id']; ?>" id="delete-post">Delete</a>
+            <a href="/app/posts/delete.php?id=<?= $post['id']; ?>" id="delete-post">Delete</a>
         </div>
     <?php endforeach ?>
 </ul>

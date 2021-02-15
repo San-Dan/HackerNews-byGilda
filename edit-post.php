@@ -17,7 +17,7 @@ $post = $statement->fetch();
 
 <article>
     <h1>Edit Your Post</h1>
-    <form action="app/posts/store.php" method="post">
+    <form action="app/posts/update.php?id=<?= $post['id']; ?>" method="post">
     <div class="form-group">
         <label for="title">Title</label>
         <input class="form-control" type="title" name="title" id ="title" value="<?= $post['title']; ?>">

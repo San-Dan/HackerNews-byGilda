@@ -15,11 +15,12 @@ if (isset($_SESSION['user'])) {
         $comment_id = $_GET['comment-id'];
         $user_id = $_SESSION['user']['id'];
 
-        $statement = $database->prepare('UPDATE comments SET content = :content WHERE id = :comment_id AND user_id = :user_id AND post_id');
+        $statement = $database->prepare('UPDATE comments SET content = :content WHERE id = :comment_id AND user_id = :user_id AND post_id = :post_id');
         $statement->bindParam(':content', $comment, PDO::PARAM_STR);
         $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
         $statement->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
         $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        
         $statement->execute();
 
         $_SESSION['message'] = 'Your changes have been saved';

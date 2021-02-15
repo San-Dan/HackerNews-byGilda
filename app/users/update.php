@@ -5,6 +5,63 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 
+/******** IMAGE *********/
+if (isset($_FILES['image'])) {
+    $file = $_FILES['image'];
+
+    if ($file['type'] !== 'image/png') {
+        $_SESSION['error_message'] = 'The chosen file type is not allowed';
+        redirect('/profile.php');
+    } else {
+        $new_file_name = $_SESSION['user']['id'] . '.png';
+        $uploads_dir = '/images/';
+
+        $destination = __DIR__ . $uploads_dir . $new_file_name;
+
+        move_uploaded_file($file['tmp_name'], $destination);
+        $_SESSION['message'] = "Woohoo! Your image has been updated.";
+        $_SESSION['image'] = $new_file_name;
+    }
+    redirect('/profile.php');
+}
+
+
+
+/******* BIOGRAPHY ********/
+if (isset($_POST['biography'])) {
+    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
+    $id = $_SESSION['user']['id'];
+
+    $statement = $database->prepare('UPDATE users SET biography = :biography WHERE id = :id');
+    $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+    $statement->execute();
+
+    $statement = $database->prepare('SELECT * FROM users WHERE id = :id');
+    $statement->bindParam(':id', $id, PDO::PARAM_STR);
+    $statement->execute();
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+    if ($_SESSION['authenticated']) {
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'biography' => $user['biography'],
+        ];
+        $_SESSION['message'] = 'Your biography has been saved!';
+    } else {
+        $_SESSION['error_message'] = 'Hoppsan, something went wrong. Try again.';
+    };
+
+
+    redirect('/profile.php');
+}
+
+
 /******** EMAIL *********/
 if (isset($_POST['email'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -34,44 +91,6 @@ if (isset($_POST['email'])) {
     } else {
         $_SESSION['error_message'] = 'Something went wrong. Try again.';
     };
-
-    redirect('/profile.php');
-}
-
-
-
-/******* BIOGRAPHY ********/
-if (isset($_POST['biography'])) {
-    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
-    $id = $_SESSION['user']['id'];
-
-    /*die(var_dump($bio));*/
-
-    $statement = $database->prepare('UPDATE users SET biography = :biography WHERE id = :id');
-    $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-
-    $statement->execute();
-
-    $statement = $database->prepare('SELECT * FROM users WHERE id = :id');
-    $statement->bindParam(':id', $id, PDO::PARAM_STR);
-    $statement->execute();
-
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-
-    if ($_SESSION['authenticated']) {
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'biography' => $user['biography'],
-        ];
-        $_SESSION['message'] = 'Your biography has been saved!';
-    } else {
-        $_SESSION['error_message'] = 'Hoppsan, something went wrong. Try again.';
-    };
-
 
     redirect('/profile.php');
 }
@@ -112,25 +131,3 @@ if (isset($_POST['new_password'])) {
     }
 }
 
-/******** IMAGE *******/
-if (isset($_FILES['image'])) {
-    $file = $_FILES['image'];
-
-    if ($file['type'] !== 'image/jpeg') {
-        $_SESSION['error_message'] = 'The chosen file type is not allowed';
-        redirect('/profile.php');
-    } elseif ($file['size'] > 3145728) {
-        $_SESSION['error_message'] = 'The uploaded file exceeded the file size limit.';
-        redirect('/profile.php');
-    } else {
-        $new_file_name = $_SESSION['user']['id'] . '.jpg';
-        $uploads_dir = '/images/';
-
-        $destination = __DIR__ . $uploads_dir . $new_file_name;
-
-        move_uploaded_file($file['tmp_name'], $destination);
-        $_SESSION['message'] = "Success! Your profile image has been updated.";
-        $_SESSION['image'] = $new_file_name;
-    }
-    redirect('/profile.php');
-}

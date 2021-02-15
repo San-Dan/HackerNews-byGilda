@@ -13,7 +13,7 @@ unset($_SESSION['message']);
 $error_message = $_SESSION['error_message'] ?? '';
 unset($_SESSION['error_message']);
 
-$fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
+$fileName = 'app/users/images' . $_SESSION['user']['id'] . '.png';
 ?>
 
 
@@ -35,7 +35,7 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
 
     <div class="user-info">
         <?php if (is_file($fileName) && file_exists($fileName)) : ?>
-            <img src="<?= $fileName ?>" class="profile-img" alt="profile image of <?= $_SESSION['user']['email'] ?>" />
+            <img src="<?= $fileName ?>" class="profile-img" alt="profile image of <?= $_SESSION['user']['id'] ?>" />
         <?php else : ?>
             <img src="/app/users/images/picture.png" class="profile-img" />
         <?php endif; ?>
@@ -58,8 +58,7 @@ $fileName = 'app/users/images' . $_SESSION['user']['id'] . '.jpg';
         <form action="app/users/update.php" method="post" enctype="multipart/form-data">
             <div class="formsection">
                 <label for="image">Upload profile picture</label>
-                <input class="form-control" type="file" name="image" id="image" accepts=".jpg" />
-
+                <input class="form-control" type="file" name="image" id="image" accepts=".png" />
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
