@@ -9,8 +9,7 @@ require __DIR__ . '/../autoload.php';
 if (!isset($_SESSION['user']) || $_SESSION['authenticated'] !== true) {
     redirect('/login.php');
     exit;
-}
-else {
+} else {
     $post_id = $_GET['id'];
     $comment_id = $_GET['comment-id'];
     $user_id = $_SESSION['user']['id'];

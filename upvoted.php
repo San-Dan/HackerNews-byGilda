@@ -17,87 +17,87 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <article class="content-post">
-<?php if (isset($_SESSION['user'])) : ?>
+    <?php if (isset($_SESSION['user'])) : ?>
         <h2>Welcome, <?php echo $_SESSION['user']['name']; ?>!</h2>
     <?php endif; ?>
 
-<button class="new-btn"><a href="/">New</a></button>
-        <button class="upvoted-btn active">Most upvoted</button>
+    <button class="new-btn"><a href="/">New</a></button>
+    <button class="upvoted-btn active">Most upvoted</button>
 
 
-<ol>
-    <?php foreach ($posts as $post) : ?>
-        <?php if (isset($_SESSION['user'])) {
-            $post_id = $post['id'];
-            $user_id = $_SESSION['user']['id'];
+    <ol>
+        <?php foreach ($posts as $post) : ?>
+            <?php if (isset($_SESSION['user'])) {
+                $post_id = $post['id'];
+                $user_id = $_SESSION['user']['id'];
 
-            $statement = $database->prepare('SELECT * FROM upvotes WHERE post_id = :post_id AND user_id = :user_id');
-            $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-            $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-            $statement->execute();
-            $upvote = $statement->fetch();
-        }
-    ?>
+                $statement = $database->prepare('SELECT * FROM upvotes WHERE post_id = :post_id AND user_id = :user_id');
+                $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+                $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                $statement->execute();
+                $upvote = $statement->fetch();
+            }
+            ?>
 
-<li>
+            <li>
 
-<a target="_blank" href="<?= $post['url']; ?>" class="list-item-title">
-<?= $post['title']; ?>
-</a>
-</li>
+                <a target="_blank" href="<?= $post['url']; ?>" class="list-item-title">
+                    <?= $post['title']; ?>
+                </a>
+            </li>
 
-<div class="subtext">
-<p>
-<?= convertTime(strtotime($post['published'])); ?> ago.
+            <div class="subtext">
+                <p>
+                    <?= convertTime(strtotime($post['published'])); ?> ago.
 
-</p>
-<p>
-<?= $post['name']; ?>
-</p>
+                </p>
+                <p>
+                    <?= $post['name']; ?>
+                </p>
 
-<?php $upvotes = countUpvotes($database, $post['id']); ?>
-<?php $numberOfComments = countComments($database, $post['id']); ?>
+                <?php $upvotes = countUpvotes($database, $post['id']); ?>
+                <?php $numberOfComments = countComments($database, $post['id']); ?>
 
 
-<div>
-<div class="upvotes-comments">
-<?php if (isset($_SESSION['user'])) : ?>
+                <div>
+                    <div class="upvotes-comments">
+                        <?php if (isset($_SESSION['user'])) : ?>
 
-<button data-url="<?= $post['id']; ?>" class="upvote-btn
+                            <button data-url="<?= $post['id']; ?>" class="upvote-btn
 <?php if (isset($_SESSION['user'])) : ?>
 <?php if ($upvote !== false) : ?>
 upvote-btn-darker
 <?php endif; ?>
 <?php endif; ?>">
-<i class="fa fa-heart" aria-hidden="true"></i>
-</button>
-<?php endif; ?>
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                            </button>
+                        <?php endif; ?>
 
-<?php if ($upvotes == 1) : ?>
-<span class="number-of-votes" data-url="<?= $post['id']; ?>">
-<?= $upvotes; ?> vote
-</span>
-<?php else : ?>
-<span class="number-of-votes" data-url="<?= $post['id']; ?>">
-<?= $upvotes; ?> votes 
-</span>
-<?php endif; ?>
+                        <?php if ($upvotes == 1) : ?>
+                            <span class="number-of-votes" data-url="<?= $post['id']; ?>">
+                                <?= $upvotes; ?> vote
+                            </span>
+                        <?php else : ?>
+                            <span class="number-of-votes" data-url="<?= $post['id']; ?>">
+                                <?= $upvotes; ?> votes
+                            </span>
+                        <?php endif; ?>
 
-<?php if ($numberOfComments == 1) : ?>
-    <a href="/post.php?id=<?= $post['id']; ?>">
-        <?= $numberOfComments; ?> comment
-    </a>
-<?php else : ?>
-    <a href="/post.php?id=<?= $post['id']; ?>">
-            <?= $numberOfComments; ?> comments
-    </a>
-<?php endif; ?>
-</div>
-</div>
-</div>
+                        <?php if ($numberOfComments == 1) : ?>
+                            <a href="/post.php?id=<?= $post['id']; ?>">
+                                <?= $numberOfComments; ?> comment
+                            </a>
+                        <?php else : ?>
+                            <a href="/post.php?id=<?= $post['id']; ?>">
+                                <?= $numberOfComments; ?> comments
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
 
-<?php endforeach; ?>
-</ol>
+        <?php endforeach; ?>
+    </ol>
 
 
 

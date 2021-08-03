@@ -44,35 +44,35 @@ if (isset($_SESSION['user'])) {
 $time = $post['published'];
 
 ?>
-      
+
 <!---- POST ---->
 <article class="single-post">
-    
-        <div class="post-info">
-            <div>
-                <?php if (isset($_SESSION['user'])) : ?>
-                    <button data-url="<?= $post['id']; ?>" class="upvote-btn
+
+    <div class="post-info">
+        <div>
+            <?php if (isset($_SESSION['user'])) : ?>
+                <button data-url="<?= $post['id']; ?>" class="upvote-btn
                     <?php if (isset($_SESSION['user'])) : ?>
                         <?php if ($upvote !== false) : ?>
                             upvote-btn-darker
                         <?php endif; ?>
                     <?php endif; ?>">
                     <i class="fa fa-heart" aria-hidden="true"></i>
-                    </button>
-                <?php endif; ?>
-                <a target="_blank" href="<?= trim($post['url']); ?>">
-                    <h3>
-                        <?= trim($post['title']); ?>
-                    </h3>
-                </a>
-            </div>
-            <p>
-                <?= $post['description']; ?>
-            </p>
-        
+                </button>
+            <?php endif; ?>
+            <a target="_blank" href="<?= trim($post['url']); ?>">
+                <h3>
+                    <?= trim($post['title']); ?>
+                </h3>
+            </a>
+        </div>
+        <p>
+            <?= $post['description']; ?>
+        </p>
+
     </div>
 
-<!---- UPVOTES AND COMMENTS  ---->
+    <!---- UPVOTES AND COMMENTS  ---->
     <div class="subtext">
         <?php $upvotes = countUpvotes($database, $post['id']); ?>
         <?php $numberOfComments = countComments($database, $post['id']); ?>
@@ -122,9 +122,9 @@ $time = $post['published'];
 </article>
 
 
-    <!----------- ALL COMMENTS ---------->
+<!----------- ALL COMMENTS ---------->
 <article class="comments">
-<p>All Comments:</p>
+    <p>All Comments:</p>
     <?php foreach ($comments as $comment) : ?>
         <?php if (isset($_SESSION['user'])) {
             $statement = $database->prepare('SELECT * FROM comments WHERE id = :id AND user_id = :user_id');
@@ -134,7 +134,7 @@ $time = $post['published'];
             $commentUpvote = $statement->fetch();
         }
         ?>
-        
+
         <div class="comment" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
             <div class="post-info">
                 <div>
@@ -147,15 +147,15 @@ $time = $post['published'];
 
 
 
-        <!---- EDIT COMMENT ---->
-    <?php if (isset($_SESSION['user'])) : ?>
-        <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
-                <div class="edit-comment-container">
-                    <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="edit-comment">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </button>
-                       <a href="/app/comments/delete-comment.php?comment-id=<?= $comment['id']; ?>&id=<?= $comment['post_id']; ?>" class="delete-comment">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+            <!---- EDIT COMMENT ---->
+            <?php if (isset($_SESSION['user'])) : ?>
+                <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
+                    <div class="edit-comment-container">
+                        <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="edit-comment">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                        <a href="/app/comments/delete-comment.php?comment-id=<?= $comment['id']; ?>&id=<?= $comment['post_id']; ?>" class="delete-comment">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </div>
                 <?php endif; ?>
@@ -164,24 +164,19 @@ $time = $post['published'];
             <p class="comment-content" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>">
                 <?= $comment['content']; ?>
             </p>
-        
-    <!----- EDIT COMMENT FORM  ----->
-<form action="/app/comments/update-comment.php?id=<?= $comment['post_id']; ?>&comment-id=<?= $comment['id']; ?>" class="comment-form-hidden" data-id="<?= $comment['post_id']; ?>"data-commentid="<?= $comment['id']; ?>" method="post">
-    <div class="form-group">
-        <label for="edit">Edit Comment</label>
-        <textarea class="form-control" rows="5" cols="5" type="text" name="edit" id="edit"><?= $comment['content']; ?></textarea>
-    </div>
-        <button type="submit" class="edit-comment-save">Save</button>
-        <a href="/post.php?id=<?= $post_id ?>" class="edit-comment-cancel">Cancel</a>
-</form>
 
-                                         
-    <?php endforeach; ?>
+            <!----- EDIT COMMENT FORM  ----->
+            <form action="/app/comments/update-comment.php?id=<?= $comment['post_id']; ?>&comment-id=<?= $comment['id']; ?>" class="comment-form-hidden" data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" method="post">
+                <div class="form-group">
+                    <label for="edit">Edit Comment</label>
+                    <textarea class="form-control" rows="5" cols="5" type="text" name="edit" id="edit"><?= $comment['content']; ?></textarea>
+                </div>
+                <button type="submit" class="edit-comment-save">Save</button>
+                <a href="/post.php?id=<?= $post_id ?>" class="edit-comment-cancel">Cancel</a>
+            </form>
+
+
+        <?php endforeach; ?>
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>
-
-
-
-
-

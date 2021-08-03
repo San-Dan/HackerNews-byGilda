@@ -20,14 +20,13 @@ if (isset($_SESSION['user'])) {
         $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
         $statement->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
         $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-        
+
         $statement->execute();
 
         $_SESSION['message'] = 'Your changes have been saved';
 
         redirect('/post.php?id=' . $post_id);
     }
-}
-else {
+} else {
     redirect('/login.php');
 }

@@ -36,4 +36,3 @@ if (isset($_SESSION['user'])) {
     $_SESSION['message'] = 'You have to be logged in to post.';
     redirect('/login.php');
 }
-

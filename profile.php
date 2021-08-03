@@ -34,25 +34,25 @@ unset($_SESSION['error_message']);
         <?php endif; ?>
     </div>
 
-    <div class="user-info"> 
-           <?php $filePath = '/app/users/images/'; ?>
+    <div class="user-info">
+        <?php $filePath = '/app/users/images/'; ?>
 
-           <img src="<?= $filePath . $_SESSION['user']['image']; ?>">
-           
+        <img src="<?= $filePath . $_SESSION['user']['image']; ?>">
+
 
         <div class="user-info-text">
-            <h1>Username: 
+            <h1>Username:
                 <?= $_SESSION['user']['name']; ?>
             </h1>
-            <p>Biography: 
+            <p>Biography:
                 <?= $_SESSION['user']['biography']; ?>
             </p>
         </div>
     </div>
 
-<hr>
+    <hr>
 
-<!------- UPDATE PROFILE ------->
+    <!------- UPDATE PROFILE ------->
 
     <section class="update-profile">
         <form action="app/users/update.php" method="post" enctype="multipart/form-data">
@@ -67,7 +67,7 @@ unset($_SESSION['error_message']);
             <div class="formsection">
                 <label for="biography">Update your bio</label>
                 <textarea class="form-control" rows="5" cols="5" type="text" name="biography" id="biography" placeholder="write anything about yourself"><?= $_SESSION['user']['biography']; ?></textarea>
-                
+
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
@@ -76,7 +76,7 @@ unset($_SESSION['error_message']);
             <div class="formsection">
                 <label for="email">Change email address</label>
                 <input class="form-control" type="email" name="email" id="email" placeholder="<?= $_SESSION['user']['email']; ?>" />
-               
+
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
@@ -84,13 +84,13 @@ unset($_SESSION['error_message']);
         <form action="app/users/update.php" method="post">
             <div class="formsection">
                 <label for="password">Update password</label>
-                <input class="form-control" type="password" name="new_password" id="new_password" placeholder="your new password"/>
-                
+                <input class="form-control" type="password" name="new_password" id="new_password" placeholder="your new password" />
+
             </div>
             <div class="form-group">
                 <label for="password">Confirm new password</label>
                 <input class="form-control" type="password" name="confirm_password" id="confirm_password" placeholder="your new password again" />
-                
+
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>

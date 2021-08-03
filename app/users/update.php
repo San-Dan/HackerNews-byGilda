@@ -8,43 +8,41 @@ require __DIR__ . '/../autoload.php';
 /******** IMAGE *********/
 if (isset($_FILES['image'])) {
     $unprocessedfile = $_FILES['image'];
-    $file = $unprocessedfile ['name'];
+    $file = $unprocessedfile['name'];
     $new_file_name = date('ymd') . '-' . $file;
     $uploads_dir = '/images/';
     $destination = __DIR__ . $uploads_dir . $new_file_name;
     $id = $_SESSION['user']['id'];
-    
+
     if ($unprocessedfile['type'] !== 'image/png') {
         $_SESSION['error_message'] = 'The chosen file type is not allowed';
         redirect('/profile.php');
-    } 
-    else {       
-       $statement = $database->prepare('UPDATE users SET image = :image WHERE id = :id');
-       $statement->bindParam(':image', $new_file_name, PDO::PARAM_STR);
-       $statement->bindParam(':id', $id, PDO::PARAM_INT);
-   
-       $statement->execute();
-   
-       $statement = $database->prepare('SELECT * FROM users WHERE id = :id');
-       $statement->bindParam(':id', $id, PDO::PARAM_STR);
-       $statement->execute();
-   
-       $user = $statement->fetch(PDO::FETCH_ASSOC);
-       
-       move_uploaded_file($unprocessedfile['tmp_name'], $destination);
-       $_SESSION['message'] = "Woohoo! Your image has been updated.";
-       $_SESSION['image'] = $new_file_name;
+    } else {
+        $statement = $database->prepare('UPDATE users SET image = :image WHERE id = :id');
+        $statement->bindParam(':image', $new_file_name, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
-       if ($_SESSION['authenticated']) {
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'biography' => $user['biography'],
-            'image' => $user['image'],
-        ];
+        $statement->execute();
 
-    }
+        $statement = $database->prepare('SELECT * FROM users WHERE id = :id');
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+        $statement->execute();
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        move_uploaded_file($unprocessedfile['tmp_name'], $destination);
+        $_SESSION['message'] = "Woohoo! Your image has been updated.";
+        $_SESSION['image'] = $new_file_name;
+
+        if ($_SESSION['authenticated']) {
+            $_SESSION['user'] = [
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'biography' => $user['biography'],
+                'image' => $user['image'],
+            ];
+        }
         redirect('/profile.php');
     }
 }
@@ -155,4 +153,3 @@ if (isset($_POST['new_password'])) {
         redirect('/profile.php');
     }
 }
-

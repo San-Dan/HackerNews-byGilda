@@ -27,19 +27,18 @@ if (isset($_POST['email'], $_POST['password'])) {
     if (
         isset($user['password']) &&
         password_verify($_POST['password'], $user['password'])
-        ) {
-            $_SESSION['user'] = [
-                'id' => $user['id'],
-                'name' => $user['name'],
-                'email' => $user['email'],
-                'biography' => $user['biography'],
-                'image' => $user['image'],
-            ];
-            $_SESSION['authenticated'] = true;
-            redirect('/');
-        } else {
-            $_SESSION['error_message'] = "Invalid. Please try again.";
-            redirect('/login.php');
-
-        }
+    ) {
+        $_SESSION['user'] = [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'biography' => $user['biography'],
+            'image' => $user['image'],
+        ];
+        $_SESSION['authenticated'] = true;
+        redirect('/');
+    } else {
+        $_SESSION['error_message'] = "Invalid. Please try again.";
+        redirect('/login.php');
     }
+}

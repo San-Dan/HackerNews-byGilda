@@ -2,7 +2,7 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
 <?php
-if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !==true) {
+if (!isset($_SESSION["user"]) || $_SESSION["authenticated"] !== true) {
     redirect("/login.php");
 }
 
@@ -27,32 +27,32 @@ $error_message = "You have not submitted any posts yet.";
             <?= $message; ?>
         </div>
     <?php endif; ?>
-<h1>Your Submissions</h1>
-<?php if (empty($posts)) : ?>
-    <div class="alert alert-danger">
-        <?= $error_message; ?>
-    </div>
-<p class="create-post">
-    Create a post <a href="/submit.php">here</a>
-</p>
-<?php endif; ?>
-
-<ul>
-    <?php foreach ($posts as $post) : ?>
-    <?php $_SESSION['post'] = $post; ?>
-<li class="submitted-post">
-    <a href="<?= $post['url']; ?>">
-        <?= $post['title']; ?>
-        </a>
-    <p><?= $post['description']; ?></p>
-</li>
-        <div class="subtext">
-            <?= convertTime(strtotime($post['published'])); ?> ago
-            <a href="/edit-post.php?id=<?= $post['id']; ?>" id="edit-post">Edit</a>
-            <a href="/app/posts/delete.php?id=<?= $post['id']; ?>" id="delete-post">Delete</a>
+    <h1>Your Submissions</h1>
+    <?php if (empty($posts)) : ?>
+        <div class="alert alert-danger">
+            <?= $error_message; ?>
         </div>
-    <?php endforeach ?>
-</ul>
+        <p class="create-post">
+            Create a post <a href="/submit.php">here</a>
+        </p>
+    <?php endif; ?>
+
+    <ul>
+        <?php foreach ($posts as $post) : ?>
+            <?php $_SESSION['post'] = $post; ?>
+            <li class="submitted-post">
+                <a href="<?= $post['url']; ?>">
+                    <?= $post['title']; ?>
+                </a>
+                <p><?= $post['description']; ?></p>
+            </li>
+            <div class="subtext">
+                <?= convertTime(strtotime($post['published'])); ?> ago
+                <a href="/edit-post.php?id=<?= $post['id']; ?>" id="edit-post">Edit</a>
+                <a href="/app/posts/delete.php?id=<?= $post['id']; ?>" id="delete-post">Delete</a>
+            </div>
+        <?php endforeach ?>
+    </ul>
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

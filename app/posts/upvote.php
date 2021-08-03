@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 $_SESSION['error_message'] = '';
 
-if(isset($_SESSION['user']['id'])) {
+if (isset($_SESSION['user']['id'])) {
     if (isset($_POST)) {
         $post_id = $_GET['id'];
         $user_id = $_SESSION['user']['id'];
@@ -25,8 +25,7 @@ if(isset($_SESSION['user']['id'])) {
             $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
             $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
             $statement->execute();
-        }
-        else { // if upvote is, then remove it
+        } else { // if upvote is, then remove it
             $statement = $database->prepare(('DELETE FROM upvotes WHERE post_id = :post_id AND user_id = :user_id'));
             $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
             $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
