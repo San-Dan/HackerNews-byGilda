@@ -11,7 +11,7 @@ function redirect(string $path)
 
 function countUpvotes($database, int $postId)
 {
-
+ 
     $statement = $database->prepare('SELECT COUNT(*) FROM upvotes WHERE post_id = :postId');
     $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
     $statement->execute();

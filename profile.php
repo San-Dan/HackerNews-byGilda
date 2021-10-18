@@ -102,7 +102,7 @@ unset($_SESSION['error_message']);
         <a href="/submitted.php?id=<?= $_SESSION['user']['id']; ?>">
             Your Submissions
         </a> |
-        <a href="/delete-account.php?id=<?= $_SESSION['user']['id']; ?>">
+        <a href="app/users/delete-account.php?id=<?= $_SESSION['user']['id']; ?>">
             Delete account
         </a>
     </div>

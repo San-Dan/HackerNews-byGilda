@@ -78,9 +78,10 @@ nav {
     list-style: none;
   }
   
-/*  
+ 
 .upvote-btn {
-}*/
+  height: 30px;
+}
 
 .upvote-btn-darker {
   color: rgb(189, 44, 44);
@@ -112,7 +113,7 @@ form {
 
   label {
     margin-top: 10px;
-  }
+  } 
   
   input {
     padding: 2px;
@@ -271,7 +272,6 @@ a.nav-link {
 
 .post-info {
   padding-top: 1rem;
-  
 }
 
 .create-post {

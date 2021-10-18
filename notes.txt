@@ -1,0 +1,20 @@
+Like and Remove Like on Comments
+--------------------------------------
+    - post.php, från rad 125
+    - använd samma hjärta under comment text
+        kopierat från post-likes, fixa styling/storlek
+    - print antal votes under comment by, X time ago (rad 148) 
+    - sparas i db i ny table OK
+    - app.js: gör om current logik till 2 st, 1 för posts + comments respektive.
+        Bara lägga till nya klasser att leta efter?
+
+
+
+Delete account and all data
+--------------------------------------
+    - finns redan knapp men fil finns ej, jag fortsätter på den!
+    - fixa en alert med js
+    - skapa delete-account.php
+        - GET[id]
+        - delete from * tables where id/userid = id
+        - olika statements förberedda, kolla 

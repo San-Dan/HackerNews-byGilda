@@ -132,6 +132,8 @@ $time = $post['published'];
             $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
             $statement->execute();
             $commentUpvote = $statement->fetch();
+
+            // get all upvotes of comments (from new table?) like statement above
         }
         ?>
 
@@ -142,13 +144,26 @@ $time = $post['published'];
                         <?= $comment['name'] . ' ' . convertTime(strtotime($comment['published'])); ?>
                         ago
                     </p>
+
+                    <!-- print upvotes here (copy from posts upvotes), add heart-button (or just LIKE-button bc space?
+                
+                
+                
+                
+                -->
                 </div>
             </div>
 
 
 
             <!---- EDIT COMMENT ---->
-            <?php if (isset($_SESSION['user'])) : ?>
+            <?php if (isset($_SESSION['user'])) : ?>               
+                <button data-url="<?= $post['id']; ?>" class="upvote-btn 
+                        <?php if ($upvote !== false) : ?>
+                            upvote-btn-darker
+                        <?php endif; ?> 
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                </button>
                 <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
                     <div class="edit-comment-container">
                         <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="edit-comment">
