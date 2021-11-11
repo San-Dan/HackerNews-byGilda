@@ -81,6 +81,7 @@ nav {
  
 .upvote-btn {
   height: 30px;
+  width: min-content;
 }
 
 .upvote-btn-darker {

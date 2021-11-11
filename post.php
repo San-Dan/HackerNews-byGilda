@@ -8,6 +8,7 @@ unset($_SESSION['message']);
 
 $post_id = $_GET['id'];
 
+// GET POST
 $statement = $database->prepare('SELECT posts.*, users.name
 FROM posts
 INNER JOIN users
@@ -18,7 +19,7 @@ $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
 $statement->execute();
 $post = $statement->fetch();
 
-
+// GET COMMENTS
 $statement = $database->prepare('SELECT comments.*, users.name
 FROM comments
 INNER JOIN users
@@ -30,7 +31,7 @@ $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
 $statement->execute();
 $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-
+// GET SESSION USER'S POST UPVOTE
 if (isset($_SESSION['user'])) {
     $post_id = $post['id'];
     $user_id = $_SESSION['user']['id'];
@@ -41,6 +42,11 @@ if (isset($_SESSION['user'])) {
     $statement->execute();
     $upvote = $statement->fetch();
 }
+
+// GET COMMENTS UPVOTES
+
+// GET SESSION USER'S COMMENT UPVOTE 
+
 $time = $post['published'];
 
 ?>
@@ -144,26 +150,24 @@ $time = $post['published'];
                         <?= $comment['name'] . ' ' . convertTime(strtotime($comment['published'])); ?>
                         ago
                     </p>
-
-                    <!-- print upvotes here (copy from posts upvotes), add heart-button (or just LIKE-button bc space?
-                
-                
-                
-                
-                -->
                 </div>
             </div>
 
 
 
             <!---- EDIT COMMENT ---->
-            <?php if (isset($_SESSION['user'])) : ?>               
-                <button data-url="<?= $post['id']; ?>" class="upvote-btn 
+            <?php if (isset($_SESSION['user'])) : ?>
+                <form action="/app/comments/upvote.php" method="post">
+                    <input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
+                    <button data-url="<?= $comment['id']; ?>" class="upvote-btn
+                    <?php if (isset($_SESSION['user'])) : ?>
                         <?php if ($upvote !== false) : ?>
                             upvote-btn-darker
-                        <?php endif; ?> 
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                </button>
+                        <?php endif; ?>
+                    <?php endif; ?>">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    </button>
+                </form>
                 <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
                     <div class="edit-comment-container">
                         <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="edit-comment">
