@@ -20,7 +20,7 @@ if (isset($_SESSION['user']['id'])) {
 
         $upvote = $statement->fetch();
 
-        // if upvote is not, then add to it
+        // if upvote is not, then add one to db table
         if ($upvote === false) {
             $statement = $database->prepare('INSERT INTO com_upvotes (comment_id, user_id) VALUES(:post_id, :user_id)');
             $statement->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
