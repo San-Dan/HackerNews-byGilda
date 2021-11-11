@@ -12,7 +12,7 @@ if (isset($_SESSION['user']['id'])) {
         die(var_dump($comment_id));
         $user_id = $_SESSION['user']['id'];
 
-        // looks if there's a upvote
+        // looks if there is an upvote
         $statement = $database->prepare(('SELECT * FROM com_upvotes WHERE comment_id = :comment_id AND user_id = :user_id'));
         $statement->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
         $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
