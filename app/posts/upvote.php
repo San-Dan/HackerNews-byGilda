@@ -32,7 +32,7 @@ if (isset($_SESSION['user']['id'])) {
             $statement->execute();
         }
 
-        // sends the number of upvote-s
+        // sends the number of upvotes
         $upvotes = countUpvotes($database, $post_id);
 
         echo json_encode($upvotes);

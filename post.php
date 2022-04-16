@@ -43,7 +43,17 @@ if (isset($_SESSION['user'])) {
     $upvote = $statement->fetch();
 }
 
-// GET COMMENTS UPVOTES
+// GET COMMENTS UPVOTES (påbörjad copy från dne ovan men blir nog ej rätt)
+// if (isset($_SESSION['user'])) {
+//     $comment_id = $comment['id'];
+//     $user_id = $_SESSION['user']['id'];
+
+//     $statement = $database->prepare('SELECT * FROM upvotes WHERE post_id = :post_id AND user_id = :user_id');
+//     $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+//     $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+//     $statement->execute();
+//     $upvote = $statement->fetch();
+// }
 
 // GET SESSION USER'S COMMENT UPVOTE 
 
@@ -55,6 +65,10 @@ $time = $post['published'];
 <article class="single-post">
 
     <div class="post-info">
+    <p><?php if (isset($_SESSION['msg'])) {
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                } ?></p>
         <div>
             <?php if (isset($_SESSION['user'])) : ?>
                 <button data-url="<?= $post['id']; ?>" class="upvote-btn
@@ -155,19 +169,15 @@ $time = $post['published'];
 
 
 
-            <!---- EDIT COMMENT ---->
+            <!---- EDIT/UPVOTE COMMENT ---->
             <?php if (isset($_SESSION['user'])) : ?>
                 <form action="/app/comments/upvote.php" method="post">
                     <input type="hidden" name="comment-id" value="<?= $comment['id']; ?>">
-                    <button data-url="<?= $comment['id']; ?>" class="upvote-btn
-                    <?php if (isset($_SESSION['user'])) : ?>
-                        <?php if ($upvote !== false) : ?>
-                            upvote-btn-darker
-                        <?php endif; ?>
-                    <?php endif; ?>">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                    </button>
+                    <input type="hidden" name="post-id" value="<?= $post['id']; ?>">
+                    <button class="comment-upvote-btn">UPVOTE</button>
                 </form>
+
+                <!-- Edit Pen + Trash Icons -->
                 <?php if ($comment['user_id'] === $_SESSION['user']['id']) : ?>
                     <div class="edit-comment-container">
                         <button data-id="<?= $comment['post_id']; ?>" data-commentid="<?= $comment['id']; ?>" class="edit-comment">
