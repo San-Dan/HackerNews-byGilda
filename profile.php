@@ -101,10 +101,16 @@ unset($_SESSION['error_message']);
     <div class="user-links">
         <a href="/submitted.php?id=<?= $_SESSION['user']['id']; ?>">
             Your Submissions
-        </a> |
-        <a href="app/users/delete-account.php?id=<?= $_SESSION['user']['id']; ?>">
-            Delete account
         </a>
+        <br>
+        <div class="divider"></div>
+        <form action="app/users/delete-account.php" method="post" style="margin-bottom: 0px;">
+            <button value="<?= $_SESSION['user']['id']; ?>" name="user-id">
+                Delete account
+            </button>
+        </form>
+        <br>
+        <span class="delete-warning">Warning! This action will delete all your account info & data</span>
     </div>
 
 </article>

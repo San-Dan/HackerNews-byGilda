@@ -1,30 +1,30 @@
 * {
     box-sizing: border-box;
     margin: 0;
-  }
+}
 
-  body {
+body {
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
-    background-color:#0e0e0e;
+    background-color: #0e0e0e;
     letter-spacing: 0.5px;
 }
 
 .container {
-  padding: 1rem;
-  margin-top: 5rem;
-  width: 70%;
-  border: 2px solid lightgrey;
-  box-shadow: 2px 2px 8px 2px lightgrey;
-  display: flex;
+    padding: 1rem;
+    margin-top: 5rem;
+    width: 70%;
+    border: 2px solid lightgrey;
+    box-shadow: 2px 2px 8px 2px lightgrey;
+    display: flex;
 }
 
 h1 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /***** NAVBABY *****/
@@ -36,13 +36,13 @@ nav {
     top: 0;
     left: 0;
     background-color: gray;
-  }
+}
 
-  .navbar-brand {
+.navbar-brand {
     margin: 20px;
-  }
+}
 
-  .menu-list {
+.menu-list {
     display: none;
     padding: 0;
     position: fixed;
@@ -54,10 +54,10 @@ nav {
     justify-content: center;
     z-index: 999;
     font-size: 18px;
-  }
-  
-  .close-btn,
-  .menu-btn {
+}
+
+.close-btn,
+.menu-btn {
     position: fixed;
     top: 0;
     right: 0;
@@ -66,137 +66,130 @@ nav {
     margin: 15px;
     margin-right: 20px;
     fill: white;
-  }
+}
 
-  .menu-list ul {
+.menu-list ul {
     padding: 0;
     margin-top: 2.5rem;
-  }
+}
 
-  .menu-list ul li {
+.menu-list ul li {
     margin: 35px;
     list-style: none;
-  }
-  
- 
+}
+
 .upvote-btn {
-  height: 30px;
-  width: min-content;
+    height: 30px;
+    width: min-content;
 }
 
 .upvote-btn-darker {
-  color: rgb(189, 44, 44);
-} 
+    color: rgb(189, 44, 44);
+}
 
 .comment-upvote-btn {
     font-size: 10px;
 }
 
-
 /******** FORMULAR  *******/
 
 form {
     margin-bottom: 2rem;
-  }
-  form div {
+}
+form div {
     display: flex;
     flex-direction: column;
-  }
-  form button {
+}
+form button {
     color: grey;
     margin-top: 5px;
     font-weight: bold;
     font-size: 18px;
-  }
- 
-  
-  #log-in-btn {
+}
+
+#log-in-btn {
     margin-top: 20px;
     margin-bottom: 20px;
-  }
-  
+}
 
-  label {
+label {
     margin-top: 10px;
-  } 
-  
-  input {
+}
+
+input {
     padding: 2px;
     height: 30px;
-  }
-  
+}
 
 /********** ARTICLES *********/
 .list-item-title {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .content-post {
-  margin-top: 2rem;
- 
+    margin-top: 2rem;
 }
-.content-post ol, ul {
-  padding: 1rem;
+.content-post ol,
+ul {
+    padding: 1rem;
 }
-
 
 /****** COMMENTS *****/
 
 .comment {
-  flex-direction: column;
-  display: flex;
-  position: relative;
+    flex-direction: column;
+    display: flex;
+    position: relative;
 }
 
 .edit-comment-container {
-  display: flex;
+    display: flex;
 }
 
 .comment-form-hidden {
-  display: none;
-  position: relative;
-  margin-bottom: 30px;
+    display: none;
+    position: relative;
+    margin-bottom: 30px;
 }
 
 .delete-comment {
-  font-weight: bold;
-  font-size: 18px;
+    font-weight: bold;
+    font-size: 18px;
 }
-
 
 /*********** FOOTER **********/
 footer {
-  display: flex;
-  flex-direction: column;
-  background-color: #0e0e0e;
-  width: 100%;
-  color: white;
-  align-items: center;
-  font-size: small;
+    display: flex;
+    flex-direction: column;
+    background-color: #0e0e0e;
+    width: 100%;
+    color: white;
+    align-items: center;
+    font-size: small;
 }
 
 footer ul {
-  display: flex;
-  padding: 10px;
+    display: flex;
+    padding: 10px;
 }
 
 footer ul li {
-  list-style: none;
-  margin: 10px;
+    list-style: none;
+    margin: 10px;
 }
 
 footer p {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 a:link {
-  text-decoration: none;
-  color: white;
-  z-index: 9999;
+    text-decoration: none;
+    color: white;
+    z-index: 9999;
 }
 
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 a.navbar-brand {
@@ -206,94 +199,102 @@ a.nav-link {
     color: white;
 }
 
-
-  /********* MEDIA ********/
-  @media screen and (min-width: 800px) {
+/********* MEDIA ********/
+@media screen and (min-width: 800px) {
     body {
-      display: flex;
-      flex-direction: column;
-      font-size: 1.1rem;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.1rem;
     }
     .container {
-      width: 50%;
-      padding-top: 2rem;
-      margin-top: 5rem;
-      background-color: black;
-      margin-left: 5rem;
-      display: flex;
+        width: 50%;
+        padding-top: 2rem;
+        margin-top: 5rem;
+        background-color: black;
+        margin-left: 5rem;
+        display: flex;
     }
 
     article {
         padding-left: 5rem;
-
     }
 
     input,
     textarea {
-      width: 100%;
+        width: 100%;
     }
 
     p {
-      font-size: small;
+        font-size: small;
     }
 
     .upvotes-comments {
-      font-size: small;
+        font-size: small;
     }
-  
+
     nav {
-      justify-content: flex-start;
+        justify-content: flex-start;
     }
     .menu-list {
-      display: flex;
-      height: unset;
-      position: fixed;
-      top: 0;
-      left: 200px;
-      background-color: gray;
-      width: 100%;
-      justify-content: flex-start;
+        display: flex;
+        height: unset;
+        position: fixed;
+        top: 0;
+        left: 200px;
+        background-color: gray;
+        width: 100%;
+        justify-content: flex-start;
     }
-  
+
     .navbar-brand {
-      font-size: 18px;
+        font-size: 18px;
     }
-  
+
     .menu-list ul {
-      display: flex;
-      flex-direction: row;
-      margin-top: unset;
+        display: flex;
+        flex-direction: row;
+        margin-top: unset;
     }
-  
+
     .menu-list ul li {
-      margin: 20px;
+        margin: 20px;
     }
     .menu-btn,
     .close-btn {
-      display: none;
+        display: none;
     }
-  
 
+    .post-info {
+        padding-top: 1rem;
+    }
 
-.post-info {
-  padding-top: 1rem;
-}
+    .create-post {
+        width: 300px;
+    }
 
-.create-post {
-  width: 300px;
-}
+    .update-profile {
+        width: 400px;
+    }
 
-.update-profile {
-  width: 400px;
-}
-  
     .profile-img {
-      width: 100px;
-      height: 100px;
+        width: 100px;
+        height: 100px;
     }
-  
+
     .list-item-title {
-      font-size: 1.1rem;
+        font-size: 1.1rem;
     }
-  
-  }
+}
+
+.divider {
+    border: 2px solid #fff;
+    width: 60px;
+    margin: 8px 0;
+}
+
+.delete-warning {
+    font-size: 12px;
+    color: rgb(189, 44, 44);
+    background-color: white;
+    padding: 2px;
+}
